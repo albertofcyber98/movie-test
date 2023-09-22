@@ -14,7 +14,7 @@ const PopularMovie = ({ movies }) => {
   return (
     <div className="bg-[#161A26] container pt-5 max-w-7xl mx-auto pb-10 px-4">
       <h1 className="text-white text-2xl mt-8 mb-5">What's Popular</h1>
-      <div className="mb-4">
+      <div className="mb-6">
         <select
           className="border border-gray-300 rounded p-2"
           value={selectedOption}
