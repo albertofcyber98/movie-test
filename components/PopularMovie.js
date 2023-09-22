@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import MovieCard from './MovieCard'
 
-const PopularMovie = ({ movies }) => {
+const PopularMovie = ({ movies, onSendData, isLoading }) => {
+  const [load, setLoad] = useState(1)
   const [selectedOption, setSelectedOption] = useState('')
   const handleSelectChange = event => {
     setSelectedOption(event.target.value)
@@ -10,6 +11,11 @@ const PopularMovie = ({ movies }) => {
     } else {
       movies.sort((a, b) => b.title.localeCompare(a.title))
     }
+  }
+  const sendDataToParent = () => {
+    let page = load + 1
+    onSendData(page)
+    setLoad(page)
   }
   return (
     <div className="bg-[#161A26] container pt-5 max-w-7xl mx-auto pb-10 px-4">
@@ -29,6 +35,16 @@ const PopularMovie = ({ movies }) => {
         {movies.map(movie => (
           <MovieCard movie={movie} key={movie.id} />
         ))}
+      </div>
+      <div className="text-center mt-6">
+        <button
+          type=""
+          className="bg-[#03FB35] hover:bg-[#82f198] text-black font-medium py-2 px-6 rounded "
+          onClick={sendDataToParent}
+          disabled={isLoading}
+        >
+          Load More
+        </button>
       </div>
     </div>
   )
