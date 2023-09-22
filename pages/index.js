@@ -12,10 +12,10 @@ export default function Home({ movies }) {
 
 export async function getStaticProps() {
   const res = await axios(
-    `${server}/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
+    `${server}/upcoming?api_key=${process.env.API_KEY}&language=en-US&page=1`
   )
   const movies = res.data
-  
+  console.log("object", movies)
   return {
     props: { movies },
   }
